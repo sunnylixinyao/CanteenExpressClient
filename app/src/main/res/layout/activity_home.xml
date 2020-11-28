@@ -11,8 +11,8 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/home_person_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/home_person_icon">
         </Button>
     </LinearLayout>
