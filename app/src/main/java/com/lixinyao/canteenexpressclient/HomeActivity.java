@@ -15,7 +15,7 @@ import com.githang.statusbar.StatusBarCompat;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
 
-    private String name="lixinyao";
+    private String name="";
     private Button TurnToPerson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         switch(v.getId()){
             //当点击个人中心按钮的时候跳转到个人中心页面
             case R.id.home_person:
-                startActivity(new Intent(HomeActivity.this,PersonActivity.class));
-                finish();
+                if (name==""){
+                    startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                }else {
+                    startActivity(new Intent(HomeActivity.this,PersonActivity.class));
+                }
         }
     }
 }
