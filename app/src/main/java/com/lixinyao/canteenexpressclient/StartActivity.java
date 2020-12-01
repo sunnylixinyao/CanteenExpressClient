@@ -33,11 +33,13 @@ public class StartActivity extends Activity {
                     //跳转到引导页面
                     Intent intent1=new Intent(StartActivity.this,GuideActivity.class);
                     startActivity(intent1);
+                    finish();
                     break;
                 case TO_HOME:
                     //跳转到主页面
                     Intent intent2=new Intent(StartActivity.this,HomeActivity.class);
                     startActivity(intent2);
+                    finish();
                     break;
             }
         }

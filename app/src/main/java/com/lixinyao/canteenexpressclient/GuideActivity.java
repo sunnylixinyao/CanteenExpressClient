@@ -1,11 +1,13 @@
 package com.lixinyao.canteenexpressclient;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -13,18 +15,18 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 
 //引导页面
-public class GuideActivity extends Activity {
+public class GuideActivity extends Activity implements View.OnClickListener {
 
     private String Tag="test";
     //创建页面上所以空间的对象
     private ImageView page_title;
     private ImageView page_icon;
     private ImageView page_leader;
-
+    private Button start_button;
     //滑动文字图片的int数组
-    private int[] contentID={R.drawable.guide_page1_content,
-    R.drawable.guide_page2_content,
-    R.drawable.guide_page3_content};
+    private int[] contentID={R.mipmap.guide_page1_content,
+    R.mipmap.guide_page2_content,
+    R.mipmap.guide_page3_content};
 
     //用来填充ViewPager的ImageView集合
     private ArrayList<ImageView> contentView=new ArrayList<>();
@@ -42,6 +44,9 @@ public class GuideActivity extends Activity {
         page_title=findViewById(R.id.page_title);
         page_icon=findViewById(R.id.page_icon);
         page_leader=findViewById(R.id.page_leader);
+        start_button=findViewById(R.id.start_button);
+        start_button.setVisibility(View.INVISIBLE);
+        start_button.setOnClickListener(this);
         //根据Id生成一个ViewPager对象
         ViewPager mViewPager=findViewById(R.id.mViewPager);
         //viewPager滑动监听
@@ -57,6 +62,16 @@ public class GuideActivity extends Activity {
         mViewPager.setAdapter(new MyAdapter());
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            //当点击个人中心按钮的时候跳转到个人中心页面
+            case R.id.start_button:
+                startActivity(new Intent(GuideActivity.this,HomeActivity.class));
+                finish();
+        }
+    }
+
     //监听ViewPager的滑动距离
     class MyOnPagerChangeListener implements ViewPager.OnPageChangeListener{
 
@@ -67,20 +82,25 @@ public class GuideActivity extends Activity {
             Log.v(Tag,"1"+position);
             switch (position){
                 case 0:
-                    page_title.setImageResource(R.drawable.guide_page1_title);
-                    page_icon.setImageResource(R.drawable.guide_page1_icon);
-                    page_leader.setImageResource(R.drawable.guide_leader1);
+                    page_title.setImageResource(R.mipmap.guide_page1_title);
+                    page_icon.setImageResource(R.mipmap.guide_page1_icon);
+                    page_leader.setImageResource(R.mipmap.guide_leader1);
+                    page_leader.setVisibility(View.VISIBLE);
+                    start_button.setVisibility(View.INVISIBLE);
                     break;
                 case 1:
-                    page_title.setImageResource(R.drawable.guide_page2_title);
-                    page_icon.setImageResource(R.drawable.guide_page2_icon);
-                    page_leader.setImageResource(R.drawable.guide_leader2);
+                    page_title.setImageResource(R.mipmap.guide_page2_title);
+                    page_icon.setImageResource(R.mipmap.guide_page2_icon);
+                    page_leader.setImageResource(R.mipmap.guide_leader2);
+                    page_leader.setVisibility(View.VISIBLE);
+                    start_button.setVisibility(View.INVISIBLE);
                     break;
                 default:
-                    page_title.setImageResource(R.drawable.guide_page3_title);
-                    page_icon.setImageResource(R.drawable.guide_page3_icon);
-                    page_leader.setImageResource(R.drawable.guide_leader2);
+                    page_title.setImageResource(R.mipmap.guide_page3_title);
+                    page_icon.setImageResource(R.mipmap.guide_page3_icon);
+                    page_leader.setImageResource(R.mipmap.guide_leader2);
                     page_leader.setVisibility(View.GONE);
+                    start_button.setVisibility(View.VISIBLE);
                     break;
             }
         }

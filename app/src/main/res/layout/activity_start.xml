@@ -10,14 +10,14 @@
         <ImageView
             android:layout_width="250dp"
             android:layout_height="180dp"
-            android:src="@drawable/start_title"
+            android:src="@mipmap/start_title"
             android:layout_marginTop="150dp"
             android:layout_gravity="center">
         </ImageView>
         <ImageView
             android:layout_width="239dp"
             android:layout_height="31dp"
-            android:src="@drawable/start_egtitle"
+            android:src="@mipmap/start_egtitle"
             android:layout_marginTop="30dp"
             android:layout_gravity="center">
         </ImageView>
@@ -29,7 +29,7 @@
         <ImageView
             android:layout_width="387dp"
             android:layout_height="188dp"
-            android:src="@drawable/start_background"
+            android:src="@mipmap/start_background"
             android:layout_marginTop="30dp"
             android:layout_gravity="center">
         </ImageView>
