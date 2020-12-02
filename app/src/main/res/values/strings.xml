@@ -3,4 +3,5 @@
     <string name="nopersoninfo">点击左上方按钮登录</string>
     <string name="enjoyeatingtime">享受用餐美好时光</string>
     <string name="loginin">登录</string>
+    <string name="register">注册</string>
 </resources>

@@ -6,5 +6,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="MyEditStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorEditNormal</item>
+        <item name="colorControlActivated">@color/colorOfText</item>
+    </style>
 </resources>
