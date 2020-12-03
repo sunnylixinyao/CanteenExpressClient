@@ -1,13 +1,12 @@
-package com.lixinyao.canteenexpressclient;
+package com.lixinyao.canteenexpressclient.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 
-import androidx.annotation.NonNull;
+import com.lixinyao.canteenexpressclient.R;
 
 public class StartActivity extends Activity {
 

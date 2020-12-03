@@ -1,9 +1,8 @@
-package com.lixinyao.canteenexpressclient;
+package com.lixinyao.canteenexpressclient.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.lixinyao.canteenexpressclient.R;
 
 import java.util.ArrayList;
 

@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuideActivity"
+        <activity android:name=".activity.GuideActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
-        <activity android:name=".PersonActivity" />
+        <activity android:name=".activity.PersonActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".StartActivity"
+            android:name=".activity.StartActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
