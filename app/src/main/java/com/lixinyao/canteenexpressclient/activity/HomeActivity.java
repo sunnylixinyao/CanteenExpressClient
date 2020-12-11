@@ -5,17 +5,27 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.githang.statusbar.StatusBarCompat;
 import com.lixinyao.canteenexpressclient.fragment.MenuFragment;
 import com.lixinyao.canteenexpressclient.fragment.NoPersinInfoFragment;
 import com.lixinyao.canteenexpressclient.R;
+import com.lixinyao.canteenexpressclient.network.HttpUtil;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
 
     private String name="";
     private Button TurnToPerson;
+    private String TAG="test";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +35,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
        //初始化控件
         initView();
     }
+
     private void initView() {
         TurnToPerson=(Button)findViewById(R.id.home_person);
         judgeLogin();

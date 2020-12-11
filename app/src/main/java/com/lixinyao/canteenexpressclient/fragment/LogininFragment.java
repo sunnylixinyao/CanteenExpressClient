@@ -11,7 +11,13 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.lixinyao.canteenexpressclient.R;
+import com.lixinyao.canteenexpressclient.network.HttpUtil;
 import com.lixinyao.canteenexpressclient.service.Client;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 public class LogininFragment extends Fragment implements View.OnClickListener {
@@ -44,6 +50,11 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Loginin_button:
@@ -55,6 +66,24 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
                 Log.i(TAG,"password is"+password);
                 Client client=new Client(ID,password);
                 Log.i(TAG, "json"+gson.toJson(client));
+                sendData(client);
         }
+    }
+    private void sendData(Client client){
+        //发送给服务端
+        HttpUtil.httpOkHttpRequest("clientLogin",client,new okhttp3.Callback(){
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //处理成功吧
+                Log.i(TAG, "网络成功了");
+            }
+            @Override
+            public void onFailure(Call call,IOException e) {
+                //处理失败
+                Log.i(TAG, "失败了");
+                Log.i(TAG, "onFailure: "+e.toString());
+            }
+        });
     }
 }
