@@ -12,12 +12,17 @@ import android.widget.EditText;
 import com.google.gson.Gson;
 import com.lixinyao.canteenexpressclient.R;
 import com.lixinyao.canteenexpressclient.network.HttpUtil;
-import com.lixinyao.canteenexpressclient.service.Client;
+import com.lixinyao.canteenexpressclient.util.Client;
+import com.lixinyao.canteenexpressclient.util.JSONtools;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Response;
+
+import static com.lixinyao.canteenexpressclient.util.DataResultError.M000000;
+import static com.lixinyao.canteenexpressclient.util.DataResultError.M000001;
 
 
 public class LogininFragment extends Fragment implements View.OnClickListener {
@@ -33,6 +38,13 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
     private Button Loginin;
     //声明GSON对象
     private Gson gson;
+
+    //用来保存用户点击登录按钮之后的登录状态
+    //根据后端传来的RECODE来判断
+    private int loginstate;
+    //1:成功登录
+    //2:登录失败，没有该用户
+    //-1：系统错误
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_loginin, container, false);
@@ -62,11 +74,11 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
                 //获取到输入的内容
                 ID=IDorTel.getText().toString();
                 password=Password.getText().toString();
-                Log.i(TAG, "ID is "+ID);
+                Log.i(TAG, "study_ID is "+ID);
                 Log.i(TAG,"password is"+password);
                 Client client=new Client(ID,password);
                 Log.i(TAG, "json"+gson.toJson(client));
-                sendData(client);
+               sendData(client);
         }
     }
     private void sendData(Client client){
@@ -75,8 +87,26 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                //处理成功吧
+                 //处理成功吧
                 Log.i(TAG, "网络成功了");
+                //Log.i(TAG,response.body().string());
+                //获得后端传递过来的内容
+                String ResponseData=response.body().string();
+                Log.i(TAG,ResponseData);
+                //将后端传来的数据保存为数组
+                //更好取出
+                ArrayList<String> data = JSONtools.jsonToArray(ResponseData);
+//                for (int i = 0; i < data.size(); i++) {
+//                   Log.i(TAG,data.get(i));
+//                }
+                if(data.get(2).equals(M000000.getCODE())){
+                    //如返回的code为000000，则说明已经查询到，并且争取返回
+                    loginstate=1;
+                }else if(data.get(2).equals(M000001.getCODE())){
+                    loginstate=2;
+                }else {
+                    loginstate=-1;
+                }
             }
             @Override
             public void onFailure(Call call,IOException e) {

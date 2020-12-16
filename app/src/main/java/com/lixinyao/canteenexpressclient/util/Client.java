@@ -1,17 +1,17 @@
-package com.lixinyao.canteenexpressclient.service;
+package com.lixinyao.canteenexpressclient.util;
 
 public class Client {
-    private String ID;
+    private String IDorTel;
     private String Password;
 
     public Client(){}
     public Client(String ID,String Password){
-        this.ID=ID;
+        this.IDorTel=ID;
         this.Password=Password;
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        this.IDorTel = ID;
     }
 
 
@@ -21,7 +21,7 @@ public class Client {
 
 
     public String getID() {
-        return ID;
+        return IDorTel;
     }
 
     public String getPassword() {
