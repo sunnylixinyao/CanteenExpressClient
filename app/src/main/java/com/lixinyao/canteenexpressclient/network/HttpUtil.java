@@ -18,7 +18,7 @@ import okhttp3.RequestBody;
 //okhttp建立http连接
 public class HttpUtil {
     private static String TAG="HttpUtil";
-    private static String Url="http://192.168.1.23:8080/CanteenExpressService_war_exploded/";
+    private static String Url="http://192.168.1.86:8080/CanteenExpressService_war_exploded/";
     private static MediaType JSON;
     public static void httpOkHttpRequest(String servlet,Object data, okhttp3.Callback callback){
         Gson gson=new Gson();

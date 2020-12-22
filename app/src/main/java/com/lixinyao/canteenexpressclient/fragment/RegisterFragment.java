@@ -1,6 +1,10 @@
 package com.lixinyao.canteenexpressclient.fragment;
 
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,9 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import com.google.gson.Gson;
 import com.lixinyao.canteenexpressclient.R;
+import com.lixinyao.canteenexpressclient.activity.LoginActivity;
 import com.lixinyao.canteenexpressclient.network.HttpUtil;
 import com.lixinyao.canteenexpressclient.util.ClientRegister;
 import com.lixinyao.canteenexpressclient.util.JSONtools;
@@ -24,6 +33,8 @@ import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Response;
+
+import static com.lixinyao.canteenexpressclient.util.DataResultError.M000000;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
@@ -43,13 +54,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     //注册按钮
     private Button ButtonRegister;
-    //获取验证码按钮
-    private TextView verifyCodeButton;
     //声明GSON
     private Gson gson;
-
-    //声明系统发过来的验证码
-    private String verifyCodeBySY;
 
     //TAG
     private String TAG="RegisterFragment";
@@ -66,9 +72,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         Editpassword=view.findViewById(R.id.password);
         EditverfCode=view.findViewById(R.id.code);
         ButtonRegister=view.findViewById(R.id.Register_Button);
-        verifyCodeButton=view.findViewById(R.id.getcode);
         ButtonRegister.setOnClickListener(this);
-        verifyCodeButton.setOnClickListener(this);
         //初始化GSON对象
         gson=new Gson();
     }
@@ -89,35 +93,22 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 Log.i(TAG,"client register data"+gson.toJson(clientRegister));
                 sendData(clientRegister);
                 break;
-            case R.id.getcode:
-            //点击获取验证码按钮,系统模拟验证码获取过程
-                VerifyCode verifyCode=new VerifyCode(1);
-                sendData(verifyCode);
-                verifyCodeButton.setText("已发送");
-                break;
         }
     }
+
     private void sendData(ClientRegister clientRegister){
         HttpUtil.httpOkHttpRequest("clientRegister",clientRegister, new okhttp3.Callback() {
 
             @Override
             public void onResponse(Call call,Response response) throws IOException {
-            }
-            @Override
-            public void onFailure(Call call,IOException e) {
-            }
-        });
-    }
-    private void sendData(VerifyCode verifyCode){
-        HttpUtil.httpOkHttpRequest("clientVerifyCodeServlet",verifyCode, new okhttp3.Callback() {
-            @Override
-            public void onFailure(Call call,IOException e) {
-
-            }
-            @Override
-            public void onResponse(Call call,Response response) throws IOException {
                 String ResponseData=response.body().string();
-                Log.i(TAG,"response data is "+ResponseData);
+                ArrayList<String> data= JSONtools.jsonToArray(ResponseData);
+                for (int i = 0; i < data.size(); i++) {
+                    Log.i(TAG,"data"+data.get(i));
+                 }
+            }
+            @Override
+            public void onFailure(Call call,IOException e) {
             }
         });
     }
