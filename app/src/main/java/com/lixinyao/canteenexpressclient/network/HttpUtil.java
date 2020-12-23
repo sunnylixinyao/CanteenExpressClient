@@ -22,7 +22,7 @@ public class HttpUtil {
     private static MediaType JSON;
     public static void httpOkHttpRequest(String servlet,Object data, okhttp3.Callback callback){
         Gson gson=new Gson();
-        Log.i(TAG,"okhttp  is working");
+       // Log.i(TAG,"okhttp  is working");
         //接收传来的servlet地址加前面的生成需要访问的地址
         String address=Url+servlet;
         //生成一个clinet对象

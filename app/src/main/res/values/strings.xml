@@ -4,4 +4,6 @@
     <string name="enjoyeatingtime">享受用餐美好时光</string>
     <string name="loginin">登录</string>
     <string name="register">注册</string>
+    <string name="accountexisted">该账户已经注册过了，请直接登录</string>
+    <string name="systemwrong">系统出错了，请稍等</string>
 </resources>

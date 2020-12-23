@@ -144,7 +144,7 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
                     Log.i(TAG,"name is "+name);
                     //声明一个sharePreference 的editor对象，由于是在Fragment中获取，因此需要先获取Activity对象
                     //将数据存储
-                    //editor.putString("name",name);
+                    editor.putString("name",name);
                     editor.putInt("LoginState",loginstate);
                     editor.putString("study_ID",study_ID);
                     editor.putString("day",day);
