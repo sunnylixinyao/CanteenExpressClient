@@ -6,4 +6,23 @@
     <string name="register">注册</string>
     <string name="accountexisted">该账户已经注册过了，请直接登录</string>
     <string name="systemwrong">系统出错了，请稍等</string>
+
+    <string name="friends">好友</string>
+    <string name="location">校区</string>
+    <string name="chat">分享社区</string>
+    <string name="order">订单</string>
+    <string name="money">充值</string>
+    <string name="setting">设置</string>
+    <string name="title_activity_person_navigation">PersonNavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_real_home_drawer">RealHomeDrawerActivity</string>
 </resources>
