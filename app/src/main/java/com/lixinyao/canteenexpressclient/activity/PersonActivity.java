@@ -14,10 +14,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.FileProvider;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.lixinyao.canteenexpressclient.R;
 
 import java.io.File;
@@ -36,6 +38,9 @@ public class PersonActivity extends Activity implements View.OnClickListener {
 
     private String TAG="PersonActivity";
 
+    private LinearLayout toFriend;
+    private LinearLayout toLocation;
+
     private static final int TAKE_PHOTO=1;
     private ImageView Userimage;
     private Button BtnuploadImage;
@@ -46,6 +51,7 @@ public class PersonActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
         sharedPreferences = getSharedPreferences("use_info", Context.MODE_PRIVATE);
+        StatusBarCompat.setStatusBarColor(this,getResources().getColor(R.color.colorMain), false);
     }
 
     @Override
@@ -58,6 +64,10 @@ public class PersonActivity extends Activity implements View.OnClickListener {
         BtnuploadImage=findViewById(R.id.upload_image);
         BtnuploadImage.setOnClickListener(this);
         Userimage=findViewById(R.id.userimage);
+        toFriend=findViewById(R.id.turntoFriend);
+        toFriend.setOnClickListener(this);
+        toLocation=findViewById(R.id.turntoLocation);
+        toLocation.setOnClickListener(this);
         //设置用户的基本信息
         setText();
     }
@@ -80,6 +90,12 @@ public class PersonActivity extends Activity implements View.OnClickListener {
             case R.id.upload_image:
                 //点击上传图片按钮时调用此函数
                  takePhoto();
+                break;
+            case R.id.turntoFriend:
+                startActivity(new Intent(PersonActivity.this,FriendsActivity.class));
+                break;
+            case R.id.turntoLocation:
+                startActivity(new Intent(PersonActivity.this,LocationActivity.class));
                 break;
             default:
                 break;
@@ -119,6 +135,7 @@ public class PersonActivity extends Activity implements View.OnClickListener {
                         //将拍摄的图片显示出来
                         //use this decodeStream() change .jpg to Bitmap
                         Bitmap bitmap= BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        Log.i(TAG,"uri is "+imageUri);
                         //将bitmap对象set到图片框中
                         Userimage.setImageBitmap(bitmap);
                         Log.i(TAG,"userimage is "+Userimage);

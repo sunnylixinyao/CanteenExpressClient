@@ -113,7 +113,7 @@ public class LogininFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                 //处理成功吧
+                 //处理成功
                 Log.i(TAG, "网络成功了");
                 //Log.i(TAG,response.body().string());
                 //获得后端传递过来的内容
